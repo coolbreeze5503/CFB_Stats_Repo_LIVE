@@ -20,37 +20,30 @@
     color: #4e9973; font-size: 11px; font-weight: 700;
     letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 10px;
   }
-  h1 {
-    font-size: 34px; font-weight: 800; letter-spacing: -0.02em;
-    margin: 0 0 6px;
-  }
+  h1 { font-size: 34px; font-weight: 800; letter-spacing: -0.02em; margin: 0 0 6px; }
   h1 span { color: #d8a73d; }
   .subhead { color: #8a938e; font-size: 14px; margin: 0 0 28px; line-height: 1.5; }
 
   .card {
-    background: #12100f10;
-    background: #141a18;
-    border: 1px solid #232a27;
-    border-radius: 14px;
-    padding: 18px;
-    margin-bottom: 20px;
+    background: #141a18; border: 1px solid #232a27;
+    border-radius: 14px; padding: 18px; margin-bottom: 20px;
   }
 
   label {
     display: block; font-size: 11px; font-weight: 700; color: #7d8783;
     text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 6px;
   }
-  input[type="text"], input[type="number"] {
+  input[type="text"], select {
     width: 100%; background: #0b0f0e; border: 1px solid #2a322e;
     color: #e9e9e4; border-radius: 8px; padding: 10px 12px; font-size: 14px;
-    outline: none;
+    outline: none; appearance: none;
   }
-  input:focus { border-color: #4e9973; }
+  input:focus, select:focus { border-color: #4e9973; }
 
   .row { display: flex; gap: 12px; margin-bottom: 14px; flex-wrap: wrap; }
   .row > div { flex: 1; min-width: 130px; }
 
-  .tabs { display: flex; gap: 8px; margin-bottom: 16px; }
+  .tabs { display: flex; gap: 8px; margin-bottom: 14px; }
   .tab {
     flex: 1; text-align: center; padding: 9px 0; border-radius: 8px;
     font-size: 13px; font-weight: 700; letter-spacing: 0.03em;
@@ -58,7 +51,10 @@
     transition: background 0.15s, color 0.15s;
   }
   .tab.active { background: #d8a73d; color: #0b0f0e; }
+  .tab.small { font-size: 12px; padding: 7px 0; }
+  .tab.mode.active { background: #4e9973; color: #0b0f0e; }
 
+  .btn-row { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
   button.primary {
     display: inline-flex; align-items: center; gap: 8px;
     background: #2f6b4f; color: #eef7f1; border: none;
@@ -67,18 +63,25 @@
   }
   button.primary:hover { background: #37805d; }
   button.primary:disabled { opacity: 0.5; cursor: default; }
+  button.ghost {
+    background: transparent; color: #8a938e; border: 1px solid #2a322e;
+    padding: 10px 14px; border-radius: 8px; font-size: 13px; font-weight: 600;
+    cursor: pointer;
+  }
+  button.ghost:hover { color: #e9e9e4; border-color: #3a453f; }
 
   .status { font-size: 13px; color: #8a938e; margin-top: 10px; }
   .error {
     background: #2a1414; border: 1px solid #4a2020; color: #e29a9a;
-    border-radius: 10px; padding: 12px 14px; font-size: 13px; margin-bottom: 20px;
-    line-height: 1.5;
+    border-radius: 10px; padding: 12px 14px; font-size: 13px; margin-bottom: 20px; line-height: 1.5;
   }
 
   .section-label {
+    display: flex; justify-content: space-between; align-items: center;
     font-size: 11px; font-weight: 700; color: #7d8783;
     text-transform: uppercase; letter-spacing: 0.08em; margin: 28px 0 10px;
   }
+  .section-label button { font-size: 10px; }
 
   .player-row {
     display: flex; justify-content: space-between; align-items: center;
@@ -89,24 +92,23 @@
   .player-row:hover { border-color: #3a453f; }
   .player-row.selected { border-color: #d8a73d; background: #d8a73d0f; }
   .player-name { font-weight: 700; font-size: 14px; }
-  .player-sub {
-    font-family: ui-monospace, SFMono-Regular, monospace; font-size: 11px;
-    color: #7d8783; margin-top: 3px;
+  .team-tag {
+    display: inline-block; font-size: 9px; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 0.04em; color: #7d8783; background: #1c2320;
+    border-radius: 4px; padding: 2px 6px; margin-left: 8px; vertical-align: middle;
   }
+  .player-sub { font-family: ui-monospace, SFMono-Regular, monospace; font-size: 11px; color: #7d8783; margin-top: 3px; }
   .ppa-badge { text-align: right; font-family: ui-monospace, monospace; }
   .ppa-val { color: #4e9973; font-size: 14px; font-weight: 700; }
   .ppa-lbl { font-size: 9px; color: #7d8783; text-transform: uppercase; }
 
-  .tape-title { text-align: center; font-size: 11px; font-weight: 700;
-    color: #7d8783; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 18px; }
-  .tape-names { display: flex; justify-content: space-between; margin-bottom: 18px; }
+  .tape-title { text-align: center; font-size: 11px; font-weight: 700; color: #7d8783; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 6px; }
+  .tape-names { display: flex; justify-content: space-between; margin-bottom: 2px; }
   .tape-names .a { color: #4e9973; font-weight: 800; font-size: 16px; }
   .tape-names .b { color: #d8a73d; font-weight: 800; font-size: 16px; }
+  .tape-teams { display: flex; justify-content: space-between; margin-bottom: 18px; font-size: 11px; color: #7d8783; }
   .stat-row { margin-bottom: 12px; }
-  .stat-labels {
-    display: flex; justify-content: space-between; font-family: ui-monospace, monospace;
-    font-size: 12px; color: #b7bdb9; margin-bottom: 4px;
-  }
+  .stat-labels { display: flex; justify-content: space-between; font-family: ui-monospace, monospace; font-size: 12px; color: #b7bdb9; margin-bottom: 4px; }
   .stat-labels .mid { color: #7d8783; text-transform: uppercase; letter-spacing: 0.05em; }
   .bar-track { display: flex; gap: 2px; height: 7px; }
   .bar-half { flex: 1; background: #1c2320; overflow: hidden; }
@@ -130,46 +132,97 @@
 <div class="wrap">
   <div class="eyebrow">● live via your own data pipeline</div>
   <h1>Snap<span>Count</span></h1>
-  <p class="subhead">Real season stats, stacked side by side. Pick a team, pull two players, see who actually wins the matchup.</p>
+  <p class="subhead">Real season stats, stacked side by side. Load players from any team or conference, then compare two of them — even across matchups that never happened.</p>
 
   <div class="card">
     <div class="row">
-      <div>
+      <div style="max-width:110px">
         <label>Year</label>
         <input type="text" id="year" value="2025" />
       </div>
       <div style="flex:2">
-        <label>Team</label>
-        <input type="text" id="team" value="Georgia" placeholder="e.g. Ohio State" />
+        <label id="filterLabel">Team</label>
+        <input type="text" id="teamInput" placeholder="e.g. Alabama" />
+        <select id="confInput" style="display:none">
+          <option value="ACC">ACC</option>
+          <option value="American Athletic">American Athletic</option>
+          <option value="Big 12">Big 12</option>
+          <option value="Big Ten">Big Ten</option>
+          <option value="Conference USA">Conference USA</option>
+          <option value="FBS Independents">FBS Independents</option>
+          <option value="Mid-American">Mid-American</option>
+          <option value="Mountain West">Mountain West</option>
+          <option value="SEC">SEC</option>
+          <option value="Sun Belt">Sun Belt</option>
+        </select>
       </div>
     </div>
-    <div class="tabs" id="tabs">
+
+    <div class="tabs">
+      <button class="tab mode active" data-mode="team">By Team</button>
+      <button class="tab mode" data-mode="conference">By Conference</button>
+    </div>
+
+    <div class="tabs" id="posTabs">
       <button class="tab active" data-cat="passing" data-key="QB">QB</button>
       <button class="tab" data-cat="rushing" data-key="RB">RB</button>
       <button class="tab" data-cat="receiving" data-key="WR">WR</button>
     </div>
-    <button class="primary" id="loadBtn">Load Roster Stats</button>
-    <div class="status" id="status"></div>
+
+    <div class="btn-row">
+      <button class="primary" id="loadBtn">Add to Roster List</button>
+      <button class="ghost" id="clearBtn">Clear List</button>
+    </div>
+    <div class="status" id="status">Load one team (or conference), then load another — everyone stacks into one list below so you can compare across matchups.</div>
   </div>
 
   <div id="errorBox"></div>
   <div id="rosterSection"></div>
   <div id="tapeSection"></div>
-  <div id="emptyState" class="empty">Set a team and position above, then load stats to get started.</div>
+  <div id="emptyState" class="empty">Load a team or conference above to get started.</div>
 </div>
 
 <script>
-  const state = { position: { cat: "passing", key: "QB", label: "Quarterbacks" }, players: [], selected: [] };
-
+  const state = {
+    position: { cat: "passing", key: "QB", label: "Quarterbacks" },
+    mode: "team",
+    players: {},
+    order: [],
+    selected: []
+  };
   const catLabels = { passing: "Quarterbacks", rushing: "Running Backs", receiving: "Receivers" };
 
-  document.querySelectorAll(".tab").forEach(btn => {
+  document.querySelectorAll(".tab.mode").forEach(btn => {
     btn.addEventListener("click", () => {
-      document.querySelectorAll(".tab").forEach(b => b.classList.remove("active"));
+      document.querySelectorAll(".tab.mode").forEach(b => b.classList.remove("active"));
       btn.classList.add("active");
-      state.position = { cat: btn.dataset.cat, key: btn.dataset.key, label: catLabels[btn.dataset.cat] };
+      state.mode = btn.dataset.mode;
+      document.getElementById("filterLabel").textContent = state.mode === "team" ? "Team" : "Conference";
+      document.getElementById("teamInput").style.display = state.mode === "team" ? "block" : "none";
+      document.getElementById("confInput").style.display = state.mode === "conference" ? "block" : "none";
     });
   });
+
+  document.querySelectorAll("#posTabs .tab").forEach(btn => {
+    btn.addEventListener("click", () => {
+      document.querySelectorAll("#posTabs .tab").forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+      state.position = { cat: btn.dataset.cat, key: btn.dataset.key, label: catLabels[btn.dataset.cat] };
+      resetList();
+    });
+  });
+
+  document.getElementById("clearBtn").addEventListener("click", resetList);
+
+  function resetList() {
+    state.players = {};
+    state.order = [];
+    state.selected = [];
+    document.getElementById("rosterSection").innerHTML = "";
+    document.getElementById("tapeSection").innerHTML = "";
+    document.getElementById("emptyState").style.display = "block";
+    document.getElementById("errorBox").innerHTML = "";
+  }
 
   function titleCase(s) {
     return s.toLowerCase().split(" ").map(w => w ? w[0].toUpperCase() + w.slice(1) : w).join(" ");
@@ -177,77 +230,89 @@
 
   async function loadData() {
     const year = document.getElementById("year").value.trim();
-    const team = document.getElementById("team").value.trim();
+    const filterVal = state.mode === "team"
+      ? document.getElementById("teamInput").value.trim()
+      : document.getElementById("confInput").value;
     const errorBox = document.getElementById("errorBox");
     const status = document.getElementById("status");
     const loadBtn = document.getElementById("loadBtn");
     const empty = document.getElementById("emptyState");
 
     errorBox.innerHTML = "";
-    document.getElementById("rosterSection").innerHTML = "";
-    document.getElementById("tapeSection").innerHTML = "";
-    state.players = [];
-    state.selected = [];
 
-    if (!team || !year) {
-      errorBox.innerHTML = '<div class="error">Enter a year and team first.</div>';
+    if (!year || !filterVal) {
+      errorBox.innerHTML = `<div class="error">Enter a year and ${state.mode} first.</div>`;
       return;
     }
 
     loadBtn.disabled = true;
     loadBtn.innerHTML = '<span class="spinner"></span> Loading...';
     status.textContent = "";
-    empty.style.display = "none";
 
     try {
+      const param = state.mode === "team"
+        ? `team=${encodeURIComponent(filterVal)}`
+        : `conference=${encodeURIComponent(filterVal)}`;
+
       const [statsRes, ppaRes] = await Promise.all([
-        fetch(`/api/stats?year=${encodeURIComponent(year)}&team=${encodeURIComponent(team)}&endpoint=stats`),
-        fetch(`/api/stats?year=${encodeURIComponent(year)}&team=${encodeURIComponent(team)}&endpoint=ppa`)
+        fetch(`/api/stats?year=${encodeURIComponent(year)}&${param}&endpoint=stats`),
+        fetch(`/api/stats?year=${encodeURIComponent(year)}&${param}&endpoint=ppa`)
       ]);
 
-      if (!statsRes.ok) throw new Error(`Request failed (${statsRes.status}). Check the team spelling.`);
+      if (!statsRes.ok) throw new Error(`Request failed (${statsRes.status}). Check spelling.`);
 
       const statsJson = await statsRes.json();
       const ppaJson = ppaRes.ok ? await ppaRes.json() : [];
 
       const filtered = statsJson.filter(r => r.category === state.position.cat);
       if (filtered.length === 0) {
-        errorBox.innerHTML = `<div class="error">No ${state.position.label.toLowerCase()} stats found for "${team}" in ${year}. Try the full team name (e.g. "Ohio State").</div>`;
+        errorBox.innerHTML = `<div class="error">No ${state.position.label.toLowerCase()} stats found for "${filterVal}" in ${year}.</div>`;
+        empty.style.display = state.order.length ? "none" : "block";
         loadBtn.disabled = false;
-        loadBtn.textContent = "Load Roster Stats";
+        loadBtn.textContent = "Add to Roster List";
         return;
       }
 
-      const grouped = {};
       for (const row of filtered) {
-        if (!grouped[row.player]) grouped[row.player] = { player: row.player, team: row.team, stats: {} };
-        grouped[row.player].stats[row.statType] = row.stat;
+        const key = row.player + "|" + row.team;
+        if (!state.players[key]) {
+          state.players[key] = { key, player: row.player, team: row.team, stats: {} };
+          state.order.push(key);
+        }
+        state.players[key].stats[row.statType] = row.stat;
       }
-      for (const name of Object.keys(grouped)) {
-        const match = ppaJson.find(p => p.name && p.name.toLowerCase().trim() === name.toLowerCase().trim());
-        if (match && match.averagePPA) grouped[name].ppa = match.averagePPA.all;
+      for (const key of Object.keys(state.players)) {
+        const p = state.players[key];
+        const match = ppaJson.find(x => x.name && x.name.toLowerCase().trim() === p.player.toLowerCase().trim());
+        if (match && match.averagePPA) p.ppa = match.averagePPA.all;
       }
 
-      state.players = Object.values(grouped).sort((a, b) => (b.stats.YDS || 0) - (a.stats.YDS || 0));
+      empty.style.display = "none";
       renderRoster();
     } catch (e) {
       errorBox.innerHTML = `<div class="error">Couldn't load data — ${e.message}</div>`;
     } finally {
       loadBtn.disabled = false;
-      loadBtn.textContent = "Load Roster Stats";
+      loadBtn.textContent = "Add to Roster List";
     }
   }
 
   function renderRoster() {
     const section = document.getElementById("rosterSection");
-    let html = `<div class="section-label">${state.position.label} — tap up to two to compare</div>`;
-    for (const p of state.players) {
-      const isSel = state.selected.find(x => x.player === p.player);
+    if (state.order.length === 0) { section.innerHTML = ""; return; }
+
+    const list = state.order
+      .map(k => state.players[k])
+      .sort((a, b) => (b.stats.YDS || 0) - (a.stats.YDS || 0));
+
+    let html = `<div class="section-label"><span>${state.position.label} — tap up to two to compare (${list.length} loaded)</span></div>`;
+    for (const p of list) {
+      const isSel = state.selected.find(x => x.key === p.key);
       const preview = Object.entries(p.stats).slice(0, 4).map(([k, v]) => `${k} ${v}`).join("  ·  ");
       html += `
-        <div class="player-row${isSel ? " selected" : ""}" data-name="${p.player}">
+        <div class="player-row${isSel ? " selected" : ""}" data-key="${p.key}">
           <div>
-            <div class="player-name">${titleCase(p.player)}</div>
+            <div class="player-name">${titleCase(p.player)}<span class="team-tag">${p.team}</span></div>
             <div class="player-sub">${preview}</div>
           </div>
           ${p.ppa != null ? `<div class="ppa-badge"><div class="ppa-lbl">PPA</div><div class="ppa-val">${p.ppa.toFixed(2)}</div></div>` : ""}
@@ -255,15 +320,15 @@
     }
     section.innerHTML = html;
     section.querySelectorAll(".player-row").forEach(row => {
-      row.addEventListener("click", () => toggleSelect(row.dataset.name));
+      row.addEventListener("click", () => toggleSelect(row.dataset.key));
     });
   }
 
-  function toggleSelect(name) {
-    const p = state.players.find(x => x.player === name);
-    const exists = state.selected.find(x => x.player === name);
+  function toggleSelect(key) {
+    const p = state.players[key];
+    const exists = state.selected.find(x => x.key === key);
     if (exists) {
-      state.selected = state.selected.filter(x => x.player !== name);
+      state.selected = state.selected.filter(x => x.key !== key);
     } else if (state.selected.length < 2) {
       state.selected.push(p);
     } else {
@@ -310,6 +375,7 @@
       <div class="card">
         <div class="tape-title">Tale of the Tape</div>
         <div class="tape-names"><span class="a">${titleCase(a.player)}</span><span class="b">${titleCase(b.player)}</span></div>
+        <div class="tape-teams"><span>${a.team}</span><span>${b.team}</span></div>
         ${rows}
         <div class="footnote">PPA = Predicted Points Added per play — a better "who actually helped their team win" number than raw yards.</div>
       </div>`;

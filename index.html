@@ -138,29 +138,12 @@
     <div class="row">
       <div style="max-width:110px">
         <label>Year</label>
-        <input type="text" id="year" value="2025" />
+        <input type="text" id="year" value="" />
       </div>
       <div style="flex:2">
-        <label id="filterLabel">Team</label>
+        <label>Team</label>
         <input type="text" id="teamInput" placeholder="e.g. Alabama" />
-        <select id="confInput" style="display:none">
-          <option value="ACC">ACC</option>
-          <option value="American Athletic">American Athletic</option>
-          <option value="Big 12">Big 12</option>
-          <option value="Big Ten">Big Ten</option>
-          <option value="Conference USA">Conference USA</option>
-          <option value="FBS Independents">FBS Independents</option>
-          <option value="Mid-American">Mid-American</option>
-          <option value="Mountain West">Mountain West</option>
-          <option value="SEC">SEC</option>
-          <option value="Sun Belt">Sun Belt</option>
-        </select>
       </div>
-    </div>
-
-    <div class="tabs">
-      <button class="tab mode active" data-mode="team">By Team</button>
-      <button class="tab mode" data-mode="conference">By Conference</button>
     </div>
 
     <div class="tabs" id="posTabs">
@@ -173,7 +156,7 @@
       <button class="primary" id="loadBtn">Add to Roster List</button>
       <button class="ghost" id="clearBtn">Clear List</button>
     </div>
-    <div class="status" id="status">Load one team (or conference), then load another — everyone stacks into one list below so you can compare across matchups.</div>
+    <div class="status" id="status">Load one team, then load another — everyone stacks into one list below so you can compare across matchups.</div>
   </div>
 
   <div id="errorBox"></div>
@@ -183,25 +166,15 @@
 </div>
 
 <script>
+  document.getElementById("year").value = new Date().getMonth() === 0 ? new Date().getFullYear() - 1 : new Date().getFullYear();
+
   const state = {
     position: { cat: "passing", key: "QB", label: "Quarterbacks" },
-    mode: "team",
     players: {},
     order: [],
     selected: []
   };
   const catLabels = { passing: "Quarterbacks", rushing: "Running Backs", receiving: "Receivers" };
-
-  document.querySelectorAll(".tab.mode").forEach(btn => {
-    btn.addEventListener("click", () => {
-      document.querySelectorAll(".tab.mode").forEach(b => b.classList.remove("active"));
-      btn.classList.add("active");
-      state.mode = btn.dataset.mode;
-      document.getElementById("filterLabel").textContent = state.mode === "team" ? "Team" : "Conference";
-      document.getElementById("teamInput").style.display = state.mode === "team" ? "block" : "none";
-      document.getElementById("confInput").style.display = state.mode === "conference" ? "block" : "none";
-    });
-  });
 
   document.querySelectorAll("#posTabs .tab").forEach(btn => {
     btn.addEventListener("click", () => {
@@ -230,9 +203,7 @@
 
   async function loadData() {
     const year = document.getElementById("year").value.trim();
-    const filterVal = state.mode === "team"
-      ? document.getElementById("teamInput").value.trim()
-      : document.getElementById("confInput").value;
+    const filterVal = document.getElementById("teamInput").value.trim();
     const errorBox = document.getElementById("errorBox");
     const status = document.getElementById("status");
     const loadBtn = document.getElementById("loadBtn");
@@ -241,7 +212,7 @@
     errorBox.innerHTML = "";
 
     if (!year || !filterVal) {
-      errorBox.innerHTML = `<div class="error">Enter a year and ${state.mode} first.</div>`;
+      errorBox.innerHTML = `<div class="error">Enter a year and team first.</div>`;
       return;
     }
 
@@ -250,9 +221,7 @@
     status.textContent = "";
 
     try {
-      const param = state.mode === "team"
-        ? `team=${encodeURIComponent(filterVal)}`
-        : `conference=${encodeURIComponent(filterVal)}`;
+      const param = `team=${encodeURIComponent(filterVal)}`;
 
       const [statsRes, ppaRes] = await Promise.all([
         fetch(`/api/stats?year=${encodeURIComponent(year)}&${param}&endpoint=stats`),

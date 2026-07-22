@@ -3,6 +3,7 @@ const SUPABASE_URL = process.env.SUPABASE_URL;
 const SUPABASE_KEY = process.env.SUPABASE_SERVICE_KEY;
 
 function seasonYear() {
+  if (process.env.SNAPSHOT_YEAR) return parseInt(process.env.SNAPSHOT_YEAR, 10);
   const now = new Date();
   const month = now.getUTCMonth() + 1;
   return month === 1 ? now.getUTCFullYear() - 1 : now.getUTCFullYear();

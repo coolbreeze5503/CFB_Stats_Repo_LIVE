@@ -3,7 +3,11 @@ name: Weekly Stats Snapshot
 on:
   schedule:
     - cron: "0 12 * 8-12,1 2"
-  workflow_dispatch: {}
+  workflow_dispatch:
+    inputs:
+      year:
+        description: "Season year to snapshot (leave blank for current)"
+        required: false
 
 jobs:
   snapshot:
@@ -18,3 +22,4 @@ jobs:
           CFBD_API_KEY: ${{ secrets.CFBD_API_KEY }}
           SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
           SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}
+          SNAPSHOT_YEAR: ${{ inputs.year }}
